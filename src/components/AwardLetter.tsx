@@ -1,13 +1,12 @@
-import React from 'react';
 import {
   Card,
   CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
-} from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Download, Printer, Share2 } from 'lucide-react';
+} from "@/components/ui/card";
+import { Button } from "@/components/ui/button";
+import { Download, Printer, Share2 } from "lucide-react";
 
 interface AwardLetterProps {
   studentName: string;
@@ -25,7 +24,7 @@ export function AwardLetter({
   awardDate,
 }: AwardLetterProps) {
   const letterContent = `
-    ${new Date().toLocaleDateString()}
+    ${awardDate}
 
     Dear ${studentName},
 
@@ -53,17 +52,17 @@ export function AwardLetter({
   `;
 
   const handleDownload = () => {
-    const element = document.createElement('a');
-    const file = new Blob([letterContent], { type: 'text/plain' });
+    const element = document.createElement("a");
+    const file = new Blob([letterContent], { type: "text/plain" });
     element.href = URL.createObjectURL(file);
-    element.download = `Award_Letter_${studentName.replace(/\s+/g, '_')}.txt`;
+    element.download = `Award_Letter_${studentName.replace(/\s+/g, "_")}.txt`;
     document.body.appendChild(element);
     element.click();
     document.body.removeChild(element);
   };
 
   const handlePrint = () => {
-    const printWindow = window.open('', '_blank');
+    const printWindow = window.open("", "_blank");
     printWindow?.document.write(`
       <html>
         <head>
